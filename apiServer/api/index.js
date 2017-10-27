@@ -14,6 +14,26 @@ router.get('/article', function (req, res, next) {
 
     res.json(articles.slice(offset, limit + offset))
 });
+router.get('/comment', function (req, res, next) {
+    var aid = req.query.article;
+    if (aid) {
+        var article = mocks.articles.find(function(article) {
+            return article.id == aid
+        })
+        return res.json((article.comments || []).map(function(id) {
+            return mocks.comments.find(function(comment) {
+                return comment.id == id
+            })
+        }))
+    }
+
+    var limit = Number(req.query.limit) || mocks.comments.length,
+        offset = Number(req.query.offset) || 0;
+    res.json({
+        total: mocks.comments.length,
+        records: mocks.comments.slice(offset, limit + offset)
+    })
+});
 
 router.get('/article/:id', function (req, res, next) {
     var article = mocks.articles.filter(function (article) {

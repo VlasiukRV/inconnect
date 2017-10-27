@@ -1,3 +1,10 @@
+var users = [
+    {
+        "id": "56c782f18990ecf954f6e027",
+        "name": 'Ewout van Zonneveld',
+        "userAvatar": 'https://lh3.googleusercontent.com/-nbae2Oajx0g/AAAAAAAAAAI/AAAAAAAAAbU/h_-8EmrlLYQ/photo.jpg'
+    }
+]
 var comments = [
     {
         "id": 0,
