@@ -3,17 +3,62 @@ var assign = require('object-assign');
 
 var mocks = require('./mock');
 
-router.get('/article', function (req, res, next) {
-    var articles = mocks.articles.map(function (article) {
-            return assign({}, article, {
+router.get('/user', function (req, res, next) {
+    var entities = mocks.users.map(function (entity) {
+            return assign({}, entity, {
                 text: undefined
             })
         }),
-        limit = Number(req.query.limit) || articles.length,
+        limit = Number(req.query.limit) || entities.length,
         offset = Number(req.query.offset) || 0;
 
-    res.json(articles.slice(offset, limit + offset))
+    res.json(entities.slice(offset, limit + offset))
 });
+router.get('/user/securityScore', function (req, res, next) {
+    var entities = mocks.userSecurityScore.map(function (entity) {
+            return assign({}, entity, {
+                text: undefined
+            })
+        }),
+        limit = Number(req.query.limit) || entities.length,
+        offset = Number(req.query.offset) || 0;
+
+    res.json(entities.slice(offset, limit + offset))
+});
+router.get('/user/notifications', function (req, res, next) {
+    var entities = mocks.userNotifications.map(function (entity) {
+            return assign({}, entity, {
+                text: undefined
+            })
+        }),
+        limit = Number(req.query.limit) || entities.length,
+        offset = Number(req.query.offset) || 0;
+
+    res.json(entities.slice(offset, limit + offset))
+});
+router.get('/user/devices', function (req, res, next) {
+    var entities = mocks.userDevices.map(function (entity) {
+            return assign({}, entity, {
+                text: undefined
+            })
+        }),
+        limit = Number(req.query.limit) || entities.length,
+        offset = Number(req.query.offset) || 0;
+
+    res.json(entities.slice(offset, limit + offset))
+});
+router.get('/insurance', function (req, res, next) {
+    var entities = mocks.insurance.map(function (entity) {
+            return assign({}, entity, {
+                text: undefined
+            })
+        }),
+        limit = Number(req.query.limit) || entities.length,
+        offset = Number(req.query.offset) || 0;
+
+    res.json(entities.slice(offset, limit + offset))
+});
+
 router.get('/comment', function (req, res, next) {
     var aid = req.query.article;
     if (aid) {

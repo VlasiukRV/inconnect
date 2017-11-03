@@ -1,25 +1,44 @@
 import React, { Component } from 'react'
-/*import { Provider} from 'react-redux'
+import { Provider} from 'react-redux'
 
 import store from '../store'
-import Articles from './Articles'
-*/
- 
+import ActiveUser from './ActiveUser/ActiveUser'
+import UserSecurityScore from './UserSecurityScore'
+import UserSecurityScoreHistory from './UserSecurityScoreHistory'
+import UserNotifications from './UserNotifications'
+import UserDevices from './UserDevices'
+import Insurance from './Insurance'
+
 export default class App extends Component {
 
     render(){
         return <div>
-            Hello
-        </div>
-
-/*        return <div>
-            <Provider store = {store}>
+          <Provider store = {store}>
+            <div>
+              <ActiveUser />
               <div>
-                <Counter />
-                <Articles />
+                <br />
+                <UserSecurityScore />
               </div>
-            </Provider>
-        </div>*/
+              <div>
+                <br />
+                <UserSecurityScoreHistory />
+              </div>
+              <div>
+                <br />
+                <UserNotifications />
+              </div>
+              <div >
+                <br />
+                <UserDevices />
+              </div>
+              <div >
+                <br />
+                <Insurance />
+              </div>
+            </div>
+          </Provider>
+        </div>
     }
 
 }
