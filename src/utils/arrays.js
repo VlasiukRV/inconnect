@@ -1,7 +1,7 @@
 import { OrderedMap } from 'immutable'
 
-export function getFirstRecordFromArray(RecordType, array){
-  if(array.length == 0){
+export function getFirstRecordFromArray(RecordType, array) {
+  if (array.length == 0) {
     return new RecordType()
   }
   let el = array[0];
@@ -9,9 +9,9 @@ export function getFirstRecordFromArray(RecordType, array){
 }
 
 export function recordsFromArray(RecordType, array) {
-    return array.reduce((map, el) => {
-        return map.set(el.id, new RecordType(el))
-    }, new OrderedMap({}))
+  return array.reduce((map, el) => {
+    return map.set(el.id, new RecordType(el))
+  }, new OrderedMap({}))
 }
 
 export function changeEntityValue(entity, payload) {

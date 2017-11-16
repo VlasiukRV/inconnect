@@ -1,31 +1,33 @@
 
-import React, { Component } from 'react'  
+import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-  
- class UserNotification extends Component {
 
-    render() {  
-        if (!this.props.notification) return <h3>Haw no notification</h3>
+class UserNotification extends Component {
 
-        const { 
-            notification
-        } = this.props
+  render() {
+    if (!this.props.notification) return <h3>Haw no notification</h3>
 
-        return (  
-          <div>
-            <p><b>{notification.name}</b></p>            
-            <p><b>{notification.date}</b></p>
-          </div>
-        )  
-    } 
+    const {notification} = this.props
+
+    return (
+      <div>
+        <p>
+          { notification.name }
+        </p>
+        <p>
+          { notification.date }
+        </p>
+      </div>
+    )
+  }
 
 }
 
-UserNotification.propTypes = {  
-    comment: PropTypes.shape({  
-        id: PropTypes.string.isRequired,  
-        name: PropTypes.string  
-    })
+UserNotification.propTypes = {
+  comment: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string
+  })
 }
 
 export default UserNotification

@@ -3,7 +3,12 @@ export const START = '_START'
 export const SUCCESS = '_SUCCESS'
 export const FAIL = '_FAIL'
 
+export const THROW_ERROR = '@@INCONNECT/THROW_ERROR'
+export const CLEAR_ERRORS = '@@INCONNECT/CLEAR_ERRORS'
+
 export const LOAD_USER = '@@INCONNECT/LOAD_USER'
+export const LOGOUT_USER = '@@INCONNECT/LOAD_USER'
+
 export const LOAD_SECURITYSCORE = '@@INCONNECT/LOAD_SECURITYSCORE'
 
 export const USERDEVICE_LIST = '@@INCONNECT/USERDEVICE_LIST'

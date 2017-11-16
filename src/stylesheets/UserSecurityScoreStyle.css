@@ -1,0 +1,40 @@
+@media (max-width: 767px) {
+  .user-security-score {
+    width: 320px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;    
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .user-security-score {
+    width: 320px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;    
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  .user-security-score {
+    width: 520px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;    
+  }
+}
+
+@media (min-width: 1200px) {
+  .user-security-score {
+    width: 520px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;    
+  }
+}
+
+.user-security-score .information-block-body {
+  text-align: center;
+}

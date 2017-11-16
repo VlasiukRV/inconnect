@@ -38,7 +38,11 @@ module.exports = {
       jQuery: "jquery",
       "window.jQuery": "jquery'",
       "window.$": "jquery"
-  })    
+    }),
+/*    new webpack.optimize.CommonsChunkPlugin({
+        children: true,
+        async: true,
+      })*/
   ],
   module: {
     rules: [
@@ -75,3 +79,13 @@ module.exports = {
   ]
   }
 }
+
+module.exports.plugins.push(
+  new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings:     false,
+                drop_console: true,
+                unsafe:       true
+            }
+        })
+);

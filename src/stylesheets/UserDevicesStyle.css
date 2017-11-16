@@ -1,0 +1,79 @@
+@media (max-width: 767px) {
+  .user-devices {  
+    width: 320px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .user-devices {  
+    width: 320px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  .user-devices {  
+    width: 100%;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .user-devices {  
+    width: 100%;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;
+  }
+}
+
+.user-devices-title {
+	
+}
+
+.user-devices-list {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.user-devices-list li {
+  display: inline;
+  float: left;
+}
+
+.user-device {
+  width: 280px;
+  height: 80px;
+  overflow: hidden;
+  margin: 10px;
+  border: 1px solid;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+  /*background: rgba(236,241,241,0.5);*/
+  background: rgba(236,241,241);
+  /*background: rgb(335, 167, 131);*/
+}
+
+.user-device-ico-wrap {
+  width: 80px;
+  height: 80px;
+  background: #FD7A53;
+  float: left;
+  text-align: center;
+}
+
+.user-device-info-wrap {
+  
+}
+
+.user-device-ico {
+  fill: #ffffff;
+}

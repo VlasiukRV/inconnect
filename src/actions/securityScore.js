@@ -1,8 +1,9 @@
-import { LOAD_SECURITYSCORE  } from '../constants'
+import { LOAD_SECURITYSCORE } from '../constants'
 
 export function loadUserSecurityScore() {
-    return {
-        type: LOAD_SECURITYSCORE,
-        callAPI: '/api/user/securityScore'
-    }
+  return {
+    type: LOAD_SECURITYSCORE,
+    checkAuthenticated: true,
+    callAPI: '/api/user/securityScore'
+  }
 }

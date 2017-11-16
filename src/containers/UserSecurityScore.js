@@ -1,54 +1,90 @@
 import React, { Component } from 'react'
+/*import { findDOMNode } from 'react-dom'*/
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
 
-import Spinner from './../components/Spinner'
+import Spinner from './../stylesheets/img/Spinner'
 
-import { loadUserSecurityScore } from '../actions/securityScore'
+import '../stylesheets/UserSecurityScoreStyle.css';
 
 class UserSecurityScore extends Component {
 
-  componentDidMount() {
-    this.props.loadUserSecurityScore()
-  }
+  componentDidMount() {}
 
   render() {
-    const { 
-      loading,
-      userSecurityScore,
-      monthlyPayment
-    } = this.props
-    
-    const head = <h3><b>My Security Score</b></h3>;
-    
+    const head = (<div className='information-block-title'>
+                    <h3>My Security Score</h3></div>);
+
+    return (
+      <div className='information-block user-security-score'>
+        { head }
+        <div className='information-block-body'>
+          { this.getBody() }
+        </div>
+        <div>
+          <ul className='information-block-nav'>
+            <li>
+              <Link to='#'>Get Recommendations</Link>
+            </li>
+            <li>
+              <Link to='/score/coverage'>View History</Link>
+            </li>
+            <li>
+              <Link to='/score/coverage'>See Coverages</Link>
+            </li>
+            <li>
+              <Link to='#' onClick={ this.handleRecalculate.bind(this) }>Recalculate</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    )
+
+  }
+
+  getBody() {
+
+    const {loading, userSecurityScore, monthlyPayment} = this.props
+
     if (loading) {
       return (
         <div>
-          {head}
-          <h1><Spinner width='50' height='50' /></h1>
+          <Spinner width='50' height='50' />
         </div>
       )
     }
 
     return (
-      <div> 
-        {head}
-        <p><b>secutity score: {userSecurityScore.securityScore}</b></p>
-        <p><b>secutity score status: {userSecurityScore.securityScoreStatus}</b></p>
-        <p><b>monthlyPayment: {monthlyPayment}</b></p>
+      <div>
+        <h4>monthly payment: { monthlyPayment }</h4>
+        <div className='chart'>
+          <div className='pieChart'></div>
+          <div ref='chart' className='pieChartBody'></div>
+          <div className='chartInformation'>
+            <h2>{ userSecurityScore.securityScore }%</h2>
+            <p>
+              { userSecurityScore.securityScoreStatus }
+            </p>
+          </div>
+        </div>
       </div>
     )
-     
+
+  }
+
+  handleRecalculate(event) {
+    event.preventDefault()
+    this.props.loadUserSecurityScore()
   }
 
 }
 
 export default connect(
-    ({securityScore, insuranceList}) => (
-      {
-        loading: securityScore.get('loading'),
-        userSecurityScore: securityScore.get('userSecurityScore'),
-        monthlyPayment: insuranceList.get('monthlyPayment')
-      }
-    ),
-    {loadUserSecurityScore}
+  ({securityScore, insuranceList}) => (
+  {
+    loading: securityScore.get('loading'),
+    userSecurityScore: securityScore.get('userSecurityScore'),
+    monthlyPayment: insuranceList.get('monthlyPayment')
+  }
+  )
 )(UserSecurityScore)

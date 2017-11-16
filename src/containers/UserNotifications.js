@@ -2,58 +2,65 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import UserNotificationsList from './../components/UserNotificationsList'
-import Spinner from './../components/Spinner'
+import Spinner from './../stylesheets/img/Spinner'
 
-import { loadUserNotificationsList } from '../actions/userNotifications'
+import '../stylesheets/UserNotificationsStyle.css';
 
 class UserNotifications extends Component {
 
-    componentDidMount() {
-      this.props.loadUserNotificationsList()
-    }
+  componentDidMount() {}
 
-    render() {
-      const { 
-        loading, 
-        notificationsList 
-      } = this.props
+  render() {
+    const head = (<div className='information-block-title'>
+                    <h3>Notifications</h3></div>);
 
-      const head = <h3><b>Notifications</b></h3>;
-      
-      if (loading) {
-        return (
-          <div>
-            {head}
-            <h1><Spinner width='50' height='50' /></h1>
-          </div>
-        )
-      }
-
-      return (
-        <div>
-          {head}
-          <UserNotificationsList notificationsList = {notificationsList} />
+    return (
+      <div className='information-block user-notifications'>
+        { head }
+        <div className='information-block-body'>
+          { this.getBody() }
         </div>
+        <ul className='information-block-nav'>
+          <li> <a href='#' title='More'>More</a></li>
+        </ul>
+      </div>
+    )
+
+  }
+
+  getBody() {
+    const {loading, notificationsList} = this.props
+
+    if (loading) {
+      return (
+        <h1><Spinner width='50' height='50' /></h1>
       )
     }
+
+    return (
+      <div>
+        <UserNotificationsList notificationsList={ notificationsList } />
+      </div>
+    )
+
+  }
 
 }
 
 export default connect(
-    ({userNotificationList, userNotificationListFilters}) => (
-      {
-        loading: userNotificationList.get('loading'),
-        notificationsList: filterNotificationsList(userNotificationList.get('userNotificationList'), userNotificationListFilters)
-      }
-    ),
-    {loadUserNotificationsList}
+  ({userNotificationList, userNotificationListFilters}) => (
+  {
+    loading: userNotificationList.get('loading'),
+    notificationsList: filterNotificationsList(userNotificationList.get('userNotificationList'), userNotificationListFilters)
+  }
+  )
 )(UserNotifications)
 
 function filterNotificationsList(entityList, filters) {
   let entityListFiltered = entityList
 
-  const term = filters.term.toLowerCase();  
-  if(term != ''){
+  const term = filters.term.toLowerCase();
+  if (term != '') {
     entityListFiltered = entityList.filter(entity => {
       return entity.name.toLowerCase().includes(term);
     })

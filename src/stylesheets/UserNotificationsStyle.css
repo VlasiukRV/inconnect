@@ -1,0 +1,36 @@
+@media (max-width: 767px) {
+  .user-notifications {
+    width: 320px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;    
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .user-notifications {
+    width: 320px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;    
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  .user-notifications {
+    width: 520px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;    
+  }
+}
+
+@media (min-width: 1200px) {
+  .user-notifications {
+    width: 520px;
+    height: 450px;
+    margin: 20px;
+    padding: 5px;    
+  }
+}

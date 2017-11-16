@@ -1,67 +1,69 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Spinner from './../components/Spinner'
-
-import { loadUserSecurityScore } from '../actions/securityScore'
+import Spinner from './../stylesheets/img/Spinner'
 
 class UserSecurityScoreHistory extends Component {
 
-  componentDidMount() {
-    this.props.loadUserSecurityScore()
-  }
+  componentDidMount() {}
 
   render() {
-    const { 
-      loading,
-      userSecurityScore
-    } = this.props
-    
+    const {loading, userSecurityScore} = this.props
+
     const head = <h3><b>My Security Score history</b></h3>;
-    
+
     if (loading) {
       return (
         <div>
-          {head}
+          { head }
           <h1><Spinner width='50' height='50' /></h1>
         </div>
       )
     }
 
     return (
-      <div> 
-        {head}
+      <div>
+        { head }
         <p>
           <b> Security Score: </b>
         </p>
         <ul>
-          <li>today: {userSecurityScore.securityScoreToday}</li>
-          <li>last month: {userSecurityScore.securityScoreLastMonth}</li>
-          <li>all time: {userSecurityScore.securityScoreAllTime}</li>
+          <li>today:
+            { userSecurityScore.securityScoreToday }
+          </li>
+          <li>last month:
+            { userSecurityScore.securityScoreLastMonth }
+          </li>
+          <li>all time:
+            { userSecurityScore.securityScoreAllTime }
+          </li>
         </ul>
-        
         <p>
           <b> Presence: </b>
         </p>
         <ul>
-          <li>today: {userSecurityScore.presenceToday}</li>
-          <li>last month: {userSecurityScore.presenceLastMonth}</li>
-          <li>all time: {userSecurityScore.presenceAllTime}</li>
+          <li>today:
+            { userSecurityScore.presenceToday }
+          </li>
+          <li>last month:
+            { userSecurityScore.presenceLastMonth }
+          </li>
+          <li>all time:
+            { userSecurityScore.presenceAllTime }
+          </li>
         </ul>
-
       </div>
     )
-     
+
   }
 
 }
 
 export default connect(
-    ({securityScore}) => (
-      {
-        loading: securityScore.get('loading'),
-        userSecurityScore: securityScore.get('userSecurityScore')
-      }
-    ),
-    {loadUserSecurityScore}
+  ({securityScore}) => (
+  {
+    loading: securityScore.get('loading'),
+    userSecurityScore: securityScore.get('userSecurityScore')
+  }
+  )
 )(UserSecurityScoreHistory)

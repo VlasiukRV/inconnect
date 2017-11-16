@@ -2,67 +2,58 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import InsuranceList from './../components/InsuranceList'
-import Spinner from './../components/Spinner'
+import Spinner from './../stylesheets/img/Spinner'
 import InsuranceListSearchBar from './InsuranceListSearchBar'
 
-import { loadInsuranceList } from '../actions/insurance'
 import { arrayToTree } from '../utils/tree'
 
 class Insurance extends Component {
-    componentDidMount() {
-      this.props.loadInsuranceList()
-    }
+  componentDidMount() {}
 
-    render() {
-      const { 
-        loading,
-        insuranceSum,
-        monthlyPayment, 
-        insuranceList 
-      } = this.props
+  render() {
+    const {loading, insuranceSum, monthlyPayment, insuranceList} = this.props
 
-      const head = <h3><b>My Coverages</b></h3>
+    const head = <h3>My Coverages</h3>
 
-      if (loading) {
-        return (
-          <div>
-            {head}
-            <h1><Spinner width='50' height='50' /></h1>
-          </div>
-        )
-      }
-      
+    if (loading) {
       return (
         <div>
-          {head}
-          <p><b>total summ: {insuranceSum}<br />
-            monthlyPayment: {monthlyPayment}
-          </b></p>
-          <InsuranceListSearchBar />
-          <InsuranceList insuranceList = {insuranceList} />
+          { head }
+          <h1><Spinner width='50' height='50' /></h1>
         </div>
-      )         
+      )
     }
+
+    return (
+      <div>
+        { head }
+        <p><b>total summ: { insuranceSum }<br />
+                  monthlyPayment: { monthlyPayment }
+                </b></p>
+        <InsuranceListSearchBar />
+        <InsuranceList insuranceList={ insuranceList } />
+      </div>
+    )
+  }
 
 }
 
 export default connect(
-    ({insuranceList, insuranceListFilters}) => (
-      {
-        loading: insuranceList.get('loading'),
-        insuranceList: buildTree(filterList(insuranceList.get('insuranceList'), insuranceListFilters)),
-        insuranceSum: insuranceList.get('insuranceSum'),
-        monthlyPayment: insuranceList.get('monthlyPayment')
-      }
-    ),
-    {loadInsuranceList}
+  ({insuranceList, insuranceListFilters}) => (
+  {
+    loading: insuranceList.get('loading'),
+    insuranceList: buildTree(filterList(insuranceList.get('insuranceList'), insuranceListFilters)),
+    insuranceSum: insuranceList.get('insuranceSum'),
+    monthlyPayment: insuranceList.get('monthlyPayment')
+  }
+  )
 )(Insurance)
 
 function filterList(entityList, filters) {
   let entityListFiltered = entityList
 
-  const term = filters.term.toLowerCase();  
-  if(term != ''){
+  const term = filters.term.toLowerCase();
+  if (term != '') {
     entityListFiltered = entityList.filter(entity => {
       return entity.name.toLowerCase().includes(term);
     })
@@ -71,6 +62,6 @@ function filterList(entityList, filters) {
   return entityListFiltered.valueSeq();
 }
 
-export function buildTree(entityList){
+export function buildTree(entityList) {
   return arrayToTree(entityList.toArray())
 }

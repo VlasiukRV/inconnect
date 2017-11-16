@@ -4,7 +4,7 @@ import { changeEntityValueInList } from './arrays'
 
 let newEntityList
 
-export function sumUpEntityList(entityList){
+export function sumUpEntityList(entityList) {
   const tree = arrayToTree(entityList.valueSeq().toArray(), {
     parentProperty: 'parent_id',
     customID: 'id',
@@ -12,17 +12,23 @@ export function sumUpEntityList(entityList){
   })
   newEntityList = entityList
   const sum = sumUpTree(tree)
-  return {newEntityList, sum}
+  return {
+    newEntityList,
+    sum
+  }
 }
 
-var sumUpTree = function(tree){
-  
+var sumUpTree = function(tree) {
+
   let result = 0;
   tree.forEach(function(item) {
     let elResult = item.value
-    if(item.children){
+    if (item.children) {
       elResult = sumUpTree(item.children)
-      newEntityList = changeEntityValueInList(newEntityList, item.id, { key:'value', value:elResult })      
+      newEntityList = changeEntityValueInList(newEntityList, item.id, {
+        key: 'value',
+        value: elResult
+      })
     }
     result = result + elResult
   });
@@ -30,10 +36,10 @@ var sumUpTree = function(tree){
 }
 
 export function arrayToTree(data, options) {
-  if(!data){
+  if (!data) {
     return []
   }
-  if(!options){
+  if (!options) {
     options = {}
   }
   options = Object.assign({

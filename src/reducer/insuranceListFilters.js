@@ -1,19 +1,16 @@
 import { INSURANCE_LIST, CHANGE_FILTERS } from '../constants'
 
 const defaultFilters = {
-    term: ''
+  term: ''
 }
 
 export default (filters = defaultFilters, action) => {
-    const { 
-        type, 
-        payload
-    } = action
+  const {type, payload} = action
 
-      switch (type) {
-        case INSURANCE_LIST+CHANGE_FILTERS:
-            return Object.assign({}, filters, payload.change)
-      }
-      
-    return filters
+  switch (type) {
+  case INSURANCE_LIST + CHANGE_FILTERS:
+    return Object.assign({}, filters, payload.change)
+  }
+
+  return filters
 }
